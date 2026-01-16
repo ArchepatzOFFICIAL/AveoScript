@@ -1,0 +1,356 @@
+
+html, body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "SauceTomato";
+    src: url("fonts/SauceTomato.otf") format("truetype");
+}
+
+@keyframes drift {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 65% 30%; }
+  100% { background-position: 50% 50%; }
+}
+
+
+.BackgroundImage{
+    position: fixed;
+    inset: 0;
+background-image: url("resources/MENUoption1.png");
+background-size: cover;
+background-position: 50% 50%;
+background-repeat: no-repeat;
+
+animation: drift 5s ease-in-out infinite;
+
+z-index: -3;
+}
+
+.CyanFrame{
+position: fixed;
+inset: 10px;
+background-image: url("resources/website_frame.png");
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+pointer-events: none;
+
+z-index: 1;
+}
+
+
+
+
+.hometext-container{
+    position: fixed;
+
+    border: 5px solid cyan;
+
+    width: 700px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+}
+
+.text-clipping{
+    overflow: hidden;
+}
+
+.glitching{
+    position: relative;
+
+    font-size: 40px;
+
+    text-align: center;
+
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word; 
+    text-align: center; 
+
+    font-family: "SauceTomato";
+
+    color: white;
+
+      text-shadow:
+    0 0 8px rgba(100, 200, 255, 0.8);
+
+    animation: soft-flicker 0.15s infinite,
+    glitch-jump 2.3s infinite steps(1);
+}
+
+.glitching::before,
+.glitching::after{
+    position: absolute;
+
+    content: attr(data-text);
+
+    inset: 0;
+    opacity: 0.75;
+}
+
+.glitching::before {
+  color: #00ffff;
+  animation: glitch-shift 2s infinite,
+  glitch-slice 1.3s infinite steps(1);
+}
+
+.glitching::after {
+  color: #ffffff;
+  animation: glitch-shift 1.5s infinite reverse,
+  glitch-slice 1.1s infinite steps(1);
+}
+
+
+.darkness_overlay{
+    position: fixed;
+
+    inset: 0;
+
+  background: rgba(0, 0, 0, 0.65);
+  opacity: 0;
+
+  pointer-events: none;
+ 
+  transition: opacity 0.1s ease;
+
+   z-index: 1;
+}
+
+.heavy-glitch-active, .darkness-overlay{
+    opacity: 1;
+}
+
+.dark-aura-fortext{
+    position: absolute;
+
+    inset: -450px;
+
+    background: radial-gradient(
+         circle,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.6) 20%,
+    rgba(0,0,0,0.85) 65%,
+    rgba(0,0,0,0.95) 100%
+    );
+
+    opacity: 0;
+
+     pointer-events: none;
+
+  transition: opacity 0.3s ease;
+
+  z-index: 2;
+}
+.signal-lost,
+.signal-lost::before,
+.signal-lost::after {
+  visibility: hidden;
+}
+
+
+
+@keyframes glitch-shift {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+@keyframes soft-flicker {
+  0% { opacity: 1; }
+  10% { opacity: 0.6; }
+  20% { opacity: 1; }
+  30% { opacity: 0.75; }
+  40% { opacity: 1; }
+  50% { opacity: 0.5; }
+  60% { opacity: 1; }
+  70% { opacity: 0.85; }
+  80% { opacity: 1; }
+  90% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+@keyframes glitch-jump {
+  0%, 90% { transform: translate(0); }
+  91% { transform: translate(-4px, 2px); }
+  92% { transform: translate(6px, -3px); }
+  93% { transform: translate(-2px, -1px); }
+  94% { transform: translate(0); }
+}
+
+@keyframes glitch-slice {
+  0% { clip-path: inset(0 0 0 0); }
+  10% { clip-path: inset(10% 0 80% 0); }
+  20% { clip-path: inset(80% 0 5% 0); }
+  30% { clip-path: inset(40% 0 40% 0); }
+  40% { clip-path: inset(0 0 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+
+
+
+.cursor-light {
+  position: fixed;
+  pointer-events: none; 
+  width: 100px;         
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,150,0.4) 0%, rgba(255,200,150,0) 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen; 
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(100,200,255,0) 70%);
+
+  z-index: 3; 
+}
+
+
+.MenuOptions{
+    position: fixed;
+    display: flex;
+    right: -20px;
+
+    top: 10%;
+    gap: 10px;
+    transform: none;
+    flex-direction: column;
+
+    z-index: 4;
+}
+
+.menuoption{
+    display: flex;
+    width: 240px;
+    height: 45px;
+    background-color: #0cc6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    font-family: "SauceTomato";
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+
+.menuoption:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home{
+    height: 80px;
+    width: 130px;
+    background-color: #0ca6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+.menuoption_home:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home ion-icon {
+    font-size: 60px;            
+    color: white;                 
+    pointer-events: none;        
+}
+
+
+
+
+.audio-player {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+
+  width: 250px;
+  height: 80px;
+  background: white;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+
+  z-index: 5;
+}
+
+.player-main {
+  flex: 1;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background: #0cc6ff;
+}
+
+.play-btn,
+.loop-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+
+.Proxitini_Sprite{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+
+    width: 170px;
+    height: auto;
+    aspect-ratio: auto;
+    
+    pointer-events: none;
+
+    z-index: 6;
+}
+
+.Proxitini_Sprite img{
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+.secret_hitbox0{
+    position: absolute;
+
+    right: 85px;
+    bottom: 65px;
+    width: 15px;
+    height: 4px;
+
+    pointer-events: auto;
+    background: rgba(255, 0, 0, 0);
+}
