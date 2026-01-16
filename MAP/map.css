@@ -1,0 +1,413 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    background-image: url("../resources/map_backgrounds/map2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    animation: drift 5s ease-in-out infinite;
+
+    transition: background-image 0.3s ease-in;
+}
+
+
+@font-face {
+    font-family: "SauceTomato";
+    src: url("../fonts/SauceTomato.otf") format("truetype");
+}
+
+@keyframes drift {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 55% 40%; }
+  100% { background-position: 50% 50%; }
+}
+
+
+
+
+
+
+.dialogue-box {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  padding: 15px 20px;
+  background: rgba(1, 23, 41, 0.9);
+  border-radius: 12px;
+  color: white;
+  font-family: "SauceTomato";
+  font-size: 16px;
+  display: none; 
+  z-index: 1000;
+}
+
+.dialogue-text {
+  white-space: pre-wrap;
+}
+
+
+
+
+
+
+.bg-layer {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+.bg-base {
+    background-image: url("../resources/map_backgrounds/map2.jpg");
+    opacity: 1;
+}
+
+.bg-hover {
+    opacity: 0;
+}
+
+
+
+.CyanFrame{
+position: fixed;
+inset: 10px;
+background-image: url("../resources/website_frame.png");
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+pointer-events: none;
+
+z-index: 2;
+}
+
+.welcoming_message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+    font-family: "SauceTomato";
+    text-align: center;
+    color: white;
+    padding: 20px;
+    
+    display: block; 
+
+    z-index: 3;
+}
+
+.welcoming_message span {
+    display: block;         
+    margin: 0.10em 0;        /* spacing proportional to font */
+    font-size: clamp(40px, 8vw, 100px);
+}
+
+.cursor-light {
+  position: fixed;
+  pointer-events: none; 
+  width: 100px;         
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,150,0.4) 0%, rgba(255,200,150,0) 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen; 
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(100,200,255,0) 70%);
+
+  z-index: 4; 
+}
+
+
+.MenuOptions{
+    position: fixed;
+    display: flex;
+    right: -20px;
+
+    top: 10%;
+    gap: 10px;
+    transform: none;
+    flex-direction: column;
+
+    z-index: 5;
+}
+
+.menuoption{
+    display: flex;
+    width: 240px;
+    height: 45px;
+    background-color: #0cc6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    font-family: "SauceTomato";
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+
+.menuoption:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home{
+    height: 80px;
+    width: 130px;
+    background-color: #0ca6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+.menuoption_home:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home ion-icon {
+    font-size: 60px;              /* icon size */
+    color: white;                 /* icon color */
+    pointer-events: none;         /* hover stays smooth */
+}
+
+
+
+
+.audio-player {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+
+  width: 250px;
+  height: 80px;
+  background: white;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+
+  z-index: 6;
+}
+
+.player-main {
+  flex: 1;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background: #0cc6ff;
+}
+
+.play-btn,
+.loop-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+
+.Proxitini_Sprite{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+
+    width: 170px;
+    height: auto;
+    aspect-ratio: auto;
+    
+    pointer-events: none;
+
+    z-index: 6;
+}
+
+.Proxitini_Sprite img{
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+.secret_hitbox0{
+    position: absolute;
+
+    right: 85px;
+    bottom: 65px;
+    width: 15px;
+    height: 4px;
+
+    pointer-events: auto;
+    background: rgba(255, 0, 0, 0);
+}
+
+
+
+
+.AveosMapSVG{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+     z-index: 1;
+}
+
+.AveosMapSVG svg{
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 20px;
+}
+
+svg path{
+    transition: transform 0.2s ease, fill 0.2s ease;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+#magochihouse_1:hover{
+    fill: rgb(71, 102, 255) !important;
+}
+#magochihouse_2:hover{
+     fill: rgb(71, 102, 255) !important;
+}
+#magochihouse_3:hover{
+     fill: rgb(71, 102, 255) !important;
+}
+#magochihouse_4:hover{
+     fill: rgb(71, 102, 255) !important;
+}
+
+#bazelialliance_1:hover{
+    fill: rgb(71, 221, 255) !important;
+}
+
+#ideshis_1:hover{
+     fill: rgb(255, 94, 255) !important;
+}
+
+#chlebyphany_1:hover{
+    fill: rgb(252, 255, 94) !important;
+}
+#chlebyphany_2:hover{
+    fill: rgb(252, 255, 94) !important;
+}
+
+#vovoyaisemasterclub_1:hover{
+    fill: rgb(94, 255, 153) !important;
+}
+
+
+.hitbox{
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 1.0;
+
+    vector-effect: non-scaling-stroke;
+    transition: stroke 0.25s ease;
+
+
+    pointer-events: auto;
+}
+
+.hitbox:hover{
+    stroke: white;
+}
+
+.hitboxes-svg{
+    pointer-events: none;
+}
+
+
+.information_box {
+    position: fixed;
+    left: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 350px;
+    padding: 12px;
+
+    background: rgba(1, 23, 41, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    font-family: "SauceTomato";
+    color: #ffffff;
+
+    display: none;        
+    z-index: 999;       
+}
+
+.information_box img {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.mapimagetitle {
+    font-family: "SauceTomato";
+    font-weight: bold;
+    text-align: center;
+}
+
+.mapimagedescription {
+    font-family: "SauceTomato";
+    font-size: 14px;
+    text-align: center;
+}
+
+.lightbox {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.lightbox.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lightbox img {
+    max-width: calc(100% - 200px);
+    max-height: calc(100% - 200px);
+    object-fit: contain;
+    box-shadow: 0 0 20px #000;
+}
