@@ -1,0 +1,439 @@
+
+html, body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "SauceTomato";
+    src: url("../fonts/SauceTomato.otf") format("truetype");
+}
+
+
+.mostbehindbackground{
+position: fixed;
+
+top: 0px;
+left: 0px;
+
+   width: 100vw;
+    height: 100vh;
+
+background-image: url("../resources/timeline_contents/timeline_background1.png");
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+}
+
+
+.timeline-bg {
+    position: absolute;
+    top: 0;                  /* start at top of container */
+    left: 50%;               /* horizontal center */
+    transform: translateX(-50%);  /* only horizontal centering */
+
+    width: 120px;            /* width of background */
+    height: 100%;            /* fill the entire container height */
+
+    background-image: url("../resources/timeline_contents/linetimeline_background.png");
+    background-repeat: repeat-y;   /* 🔑 repeat vertically */
+    background-position: top center; /* start from top */
+    background-size: contain;       /* maintain aspect ratio */
+
+    z-index: 0;              /* behind timeline */
+    pointer-events: none;    /* don't block clicks */
+}
+
+.timeline-container {
+    position: absolute;
+    top: 0px;
+    right: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50px;          
+    height: auto;      /* height grows with content */
+    z-index: 1;
+}
+
+
+
+
+
+
+
+.timeline-box{
+    display: flex;
+    gap: 40px;
+
+
+
+    z-index: 1;
+}
+
+.timeline {
+    position: relative;       /* relative to container */
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    z-index: 2;               /* above timeline-bg */
+}
+
+
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    left: 50%;              /* center the line horizontally in timeline */
+    width: 2px;
+    background-color: #53789b;
+    transform: translateX(-50%);  /* true centering */
+    z-index: 0;
+}
+
+.knot {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    transition: transform 0.2s;
+    z-index: 5; 
+}
+
+
+.knot:hover .bubble,
+.knot:focus-within .bubble{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+}
+
+.knot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.knot:hover{
+    transform: scale(1.15);
+}
+
+.ACTIVE{
+    background-color: rgb(0, 255, 242);
+}
+
+.inactive{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(174, 186, 191);
+}
+
+
+.knot.ACTIVE {
+    background-color: #00fff2;
+    box-shadow:
+        0 0 8px rgba(0, 255, 242, 0.9),
+        0 0 16px rgba(0, 255, 242, 0.8),
+        0 0 32px rgba(0, 255, 242, 0.6);
+}
+
+
+.small{
+
+    width: 15px;
+    height: 15px;
+}
+
+.big{
+    width: 25px;
+    height: 25px;
+}
+
+.knot-box{
+    padding-top: 90px;
+    padding-right: 200px;
+
+    width: 350px;
+    height: 400px;
+
+    font-family: "SauceTomato";
+}
+
+
+.knot.pulse {
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 1),
+        0 0 18px rgba(220, 240, 255, 0.9),
+        0 0 30px rgba(200, 230, 255, 0.8);
+}
+
+
+
+
+
+.CyanFrame{
+position: fixed;
+inset: 10px;
+background-image: url("../resources/website_frame.png");
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+pointer-events: none;
+
+z-index: 2;
+}
+
+.welcoming_message span {
+    display: block;         
+    margin: 0.10em 0;        /* spacing proportional to font */
+    font-size: clamp(40px, 8vw, 100px);
+}
+
+.bubble {
+    position: absolute;
+    top: 50%;            /* align vertically with knot */
+    right: 60px;         /* distance to left of timeline */
+    transform: translateY(-50%); /* center vertically without affecting horizontal placement */
+    
+    background-color: rgba(1, 23, 41, 0.9);
+    padding: 14px;
+    border-radius: 13px;
+    border: 7px solid white;
+
+    color: white;
+    font-family: "SauceTomato";
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    z-index: 27;
+}
+
+
+.bubble::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent rgba(20, 30, 45, 0.95) transparent transparent;
+}
+
+.bubble-small{
+    width: 180px;
+}
+.bubble-small h1{
+    font-family: "SauceTomato";
+    color: white;
+    margin: 0px;
+    font-size: 15px;
+}
+
+.bubble-big{
+    width: 400px;
+}
+
+.bubble-big img,
+.bubble-big video{
+    width: 30%;
+    height: 30%;
+
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.bubble-big h1{
+    font-family: "SauceTomato";
+    color: white;
+    margin: 0px;
+    font-size: 20px;
+}
+
+.knot a {
+    display: block;       /* make it block, not inline */
+    width: 100%;
+    height: 100%;
+    position: absolute;   /* so it doesn’t affect knot’s layout */
+    top: 0;
+    left: 0;
+    text-decoration: none; /* optional, removes underline */
+}
+
+
+
+.cursor-light {
+  position: fixed;
+  pointer-events: none; 
+  width: 100px;         
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,150,0.4) 0%, rgba(255,200,150,0) 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen; 
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(100,200,255,0) 70%);
+
+  z-index: 999999; 
+}
+
+
+.MenuOptions{
+    position: fixed;
+    display: flex;
+    right: -20px;
+
+    top: 10%;
+    gap: 10px;
+    transform: none;
+    flex-direction: column;
+
+    z-index: 5;
+}
+
+.menuoption{
+    display: flex;
+    width: 240px;
+    height: 45px;
+    background-color: #0cc6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    font-family: "SauceTomato";
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+
+.menuoption:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home{
+    height: 80px;
+    width: 130px;
+    background-color: #0ca6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+.menuoption_home:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home ion-icon {
+    font-size: 60px;              /* icon size */
+    color: white;                 /* icon color */
+    pointer-events: none;         /* hover stays smooth */
+}
+
+
+
+
+.audio-player {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+
+  width: 250px;
+  height: 80px;
+  background: white;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+
+  z-index: 6;
+}
+
+.player-main {
+  flex: 1;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background: #0cc6ff;
+}
+
+.play-btn,
+.loop-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+
+.Proxitini_Sprite{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+
+    width: 170px;
+    height: auto;
+    aspect-ratio: auto;
+    
+    pointer-events: none;
+
+    z-index: 6;
+}
+
+.Proxitini_Sprite img{
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+.secret_hitbox0{
+    position: absolute;
+
+    right: 85px;
+    bottom: 65px;
+    width: 15px;
+    height: 4px;
+
+    pointer-events: auto;
+    background: rgba(255, 0, 0, 0);
+}
+
+

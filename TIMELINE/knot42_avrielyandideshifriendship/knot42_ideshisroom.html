@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOT 42</title>
+    <link rel="stylesheet" href="knot42_ideshisroom.css">
+</head>
+<body>
+
+  <div class="background"></div>
+    
+
+  <div id="whiteSceneOverlay"></div>
+
+
+
+  
+
+ <audio id="roomBGM" loop>
+  <source src="../../soundtracks/'JourneyEveryone!MuffledInsideRoom.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+
+<!--<div id="exitZone"></div>-->
+
+
+   <div class="room_container">
+
+
+
+    <div class="poduszka">
+        <img id="poduszka"
+             src="../../resources/timeline_contents/knot42/poduszka_sprites/poduszka_front.png">
+             <div class="dialogue-hitbox-detector"></div>
+               <div class="player-collider"></div>
+    </div>
+
+
+
+    <!--ADDITIONAL BLOCKADES-->
+    <div class="blockade blockade_bed"></div>
+    <div class="blockade blockade_bed2"></div>
+    <div class="blockade blockade_bed3"></div>
+
+    <div class="blockade desk1"></div>
+    <div class="blockade desk2"></div>
+
+
+    <div class="blockade leftwall"></div>
+
+    <div class="blockade chessboard"></div>
+
+    <div class="blockade openbookonthefloorbybookshelves"></div>
+
+
+
+    <!--DIALOGUE BOX-->
+    <div class="dialogue-box" id="dialogueBox">
+  <p class="dialogue-text" id="dialogueText"></p>
+  <span class="dialogue-hint">[Enter]</span>
+</div>
+
+
+
+
+
+    <!--HITBOXES-->
+    <div id="Bed-MainFrame"></div>
+     <div id="Bed-Pillows"></div>
+      <div id="Bed-Closet"></div>
+       <div id="Door"></div>
+        <div id="Desk-Shelves"></div>
+        <div id="Desk-BigOpenBook"></div>
+         <div id="Desk-SmallOpenBook"></div>
+          <div id="Bookshelves-NextToComicHitbox"></div>
+           <div id="Bookshelves-OpenBook"></div>
+            <div id="Bookshelves-Right"></div>
+             <div id="Bookshelves-Left"></div>
+              <div id="Box"></div>
+              <div id="Chessboard"></div>
+              <div id="Tools"></div>
+              <div id="OilSpot"></div>
+
+               <div id="ComicAREA"></div>
+                <div id="SketchAREA"></div>
+                <div id="FullArtsAREA"></div>
+
+                 <div id="Proxitini"></div>
+
+
+    <div id="proxitini">
+        <img src="../../resources/timeline_contents/knot42/room_items/proxitini_knot42_sprite.png">
+    </div>
+    <div class="proxitini-hitbox"></div>
+</div>
+
+<div class="poduszkas_comment">
+    <p class="dialogue-text"></p>
+
+</div>
+
+
+
+<!--GALLERIES AND LIGHTBOXES-->
+<div id="imageViewerOverlay">
+  <div class="imageViewer">
+        <div id="prevArrow" class="arrow">&#8592;</div>
+        <img id="viewerImage" src="" alt="Artwork">
+        <div id="nextArrow" class="arrow">&#8594;</div>
+    </div>
+</div>
+
+
+
+
+       <!--COPY PASTE AREA-->
+<div class="CyanFrame"> </div>
+
+
+  <div class="Proxitini_Sprite">
+    <img src="../../resources/channels4_profile-removebg-preview-2.svg" alt="proxitini_sprite">
+
+    <a href="../../secret_DIARY/diary.html" class="secret_hitbox0"></a>
+  </div>
+
+
+
+ 
+  <div class="audio-player">
+<button class="loop-btn">ᦠ</button>
+<div class="player-main">
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+</div>
+
+<button class="play-btn">▶</button>
+</div>
+
+<audio id="audio"></audio>
+
+
+  <div class="MenuOptions">
+    <a href="../../HOME.html" class="menuoption_home"><ion-icon name="home"></ion-icon></a>
+    <a href="../../MAP/map.html" class="menuoption">MAP</a>
+    <a href="../../CHARACTERS/characters.html" class="menuoption">CHARACTERS</a>
+    <a href="../../TIMELINE/timeline.html" class="menuoption">TIMELINE</a>
+    <a href="../../ARCHIVE/archive.html" class="menuoption">ARCHIVE</a>
+  </div>
+
+
+<div class="cursor-light"></div>
+
+<script>
+const cursorLight = document.querySelector('.cursor-light');
+
+document.addEventListener('mousemove', e => {
+  cursorLight.style.left = e.clientX + 'px';
+  cursorLight.style.top = e.clientY + 'px';
+});
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script>
+const audio = document.getElementById("audio");
+const playBtn = document.querySelector(".play-btn");
+const loopBtn = document.querySelector(".loop-btn");
+const progress = document.querySelector(".progress");
+const title = document.querySelector(".track-title");
+
+const tracks = [
+   "AVEOSCRIPT_MainTheme.wav",
+  "ElevatorMusic.wav",
+  "Get_Down_song_1wav.wav"
+];
+
+let firstPlay = true;
+let isLooping = false;
+let currentTrack = null;
+
+function selectTrack() {
+  if (firstPlay) {
+    currentTrack = tracks[0];
+    firstPlay = false;
+  } else {
+    const randomIndex = Math.floor(Math.random() * tracks.length);
+    currentTrack = tracks[randomIndex];
+  }
+
+  audio.src="../../soundtracks/" + currentTrack;
+  audio.load();
+  title.textContent = currentTrack;
+}
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    if (!currentTrack) {
+      selectTrack();
+    }
+
+    audio.play().then(() => {
+      playBtn.textContent = "⏸";
+    }).catch(err => {
+      console.error("Audio failed:", err);
+    });
+
+  } else {
+    audio.pause();
+    playBtn.textContent = "▶";
+  }
+});
+
+loopBtn.addEventListener("click", () => {
+  isLooping = !isLooping;
+  audio.loop = isLooping;
+  loopBtn.style.opacity = isLooping ? "1" : "0.4";
+});
+
+audio.addEventListener("timeupdate", () => {
+  if (audio.duration) {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + "%";
+  }
+});
+
+audio.addEventListener("ended", () => {
+  playBtn.textContent = "▶";
+  currentTrack = null;
+});
+</script>
+
+  <!--COPY PASTE AREA-->
+
+
+  <script src="gamelogic.js"></script>
+
+
+</body>
+</html>
