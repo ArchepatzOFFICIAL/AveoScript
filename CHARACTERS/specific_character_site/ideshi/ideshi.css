@@ -1,0 +1,389 @@
+
+html, body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "SauceTomato";
+    src: url("../../../fonts/SauceTomato.otf") format("truetype");
+}
+
+
+
+.characters-background{
+position:fixed;
+
+top: 0px;
+left: 0px;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+background-image: url("../../../resources/character_minatures/characterscreen_elements/characters_background_blurred.png");
+
+    animation: drift 5s ease-in-out infinite;
+
+    transition: background-image 0.3s ease-in;
+
+z-index: -3;
+}
+
+@keyframes drift {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 55% 40%; }
+  100% { background-position: 50% 50%; }
+}
+
+
+.moving-spotlight{
+position: fixed;
+
+top: 0px;
+left: 0px;
+
+pointer-events: none;
+
+transition: top 3s linear, left 3s linear ;
+
+z-index: -2;
+}
+
+.moving-spotlight img {
+    width: 1000px; 
+    height: auto;
+
+    opacity: 0.7;
+
+    user-select: none;
+}
+
+
+
+.main-container{
+    position: relative;
+
+    width: 900px;
+    height: 500px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    align-items: center;
+    justify-content: center;
+
+    border: 9px solid cyan;
+
+    z-index: 0;
+}
+
+.character-photos{
+    position: absolute;
+
+    width: 400px;
+    height: 500px;
+
+    top: 10px;
+    left: 00px;
+
+    align-items: center;
+
+    
+
+    z-index: 888;
+}
+
+.character-photos img{
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+}
+
+
+.character-photo-specific{
+    position: absolute;
+    top: 40px;
+    left: 70px;
+
+    width: 260px;
+    height: 260px;
+
+    border: 3px solid cyan;
+    overflow: hidden; 
+
+    z-index: 15;
+}
+
+.character-photo-specific img {
+  display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;   
+    object-position: center;
+}
+
+
+.character-name{
+    position: absolute;
+    font-family: "SauceTomato";
+    color: rgba(12, 47, 128, 0.65);
+
+    height: 45px;
+    width: 195px;
+
+    bottom: 97px;
+    left: 105px;
+
+    display: flex;           /* center text easily */
+    align-items: center;
+    justify-content: center;
+}
+
+.character-name h1{
+    position: static;        /* default, so no absolute positioning */
+    font-size: 17px;
+}
+
+
+
+.character-description{
+    position: absolute;
+
+    font-family: "SauceTomato";
+
+    height: 500px;
+    width: 500px;
+
+    top: 10px;
+    right: 0px;
+
+    align-items: center;
+    justify-content: center;
+
+
+
+
+    z-index: 889;
+}
+
+.character-description img{
+    position: absolute;
+
+    top: 0px;
+    right: 0px;
+
+    height: 550px;
+    width: 550px;
+}
+
+.character-description p{
+    position: absolute;
+
+    top: 110px;
+    right: 90px;
+
+    width: 350px;
+    height: auto;
+
+    line-height: 35px;
+
+        white-space: inherit;
+
+        color: rgba(12, 47, 128, 0.65);
+        font-size: 10;
+        opacity: 1;
+
+    transform: rotate(-3.5deg);
+    transform-origin: center;
+
+    display: inline-block;
+
+    z-index: 999999;
+}
+
+
+
+
+
+.CyanFrame{
+position: fixed;
+inset: 10px;
+background-image: url("../../../resources/website_frame.png");
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+pointer-events: none;
+
+z-index: 2;
+}
+
+.welcoming_message span {
+    display: block;         
+    margin: 0.10em 0;
+    font-size: clamp(40px, 8vw, 100px);
+}
+
+.cursor-light {
+  position: fixed;
+  pointer-events: none; 
+  width: 100px;         
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,200,150,0.4) 0%, rgba(255,200,150,0) 70%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen; 
+  background: radial-gradient(circle, rgba(100,200,255,0.4) 0%, rgba(100,200,255,0) 70%);
+
+  z-index: 4; 
+}
+
+
+.MenuOptions{
+    position: fixed;
+    display: flex;
+    right: -20px;
+
+    top: 10%;
+    gap: 10px;
+    transform: none;
+    flex-direction: column;
+
+    z-index: 5;
+}
+
+.menuoption{
+    display: flex;
+    width: 240px;
+    height: 45px;
+    background-color: #0cc6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    font-family: "SauceTomato";
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+
+.menuoption:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home{
+    height: 80px;
+    width: 130px;
+    background-color: #0ca6ff;
+    border-radius: 17px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+
+    text-decoration: none;
+
+    transition: transform 0.8s ease;
+}
+.menuoption_home:hover{
+    transform: translateX(-20px);
+}
+
+.menuoption_home ion-icon {
+    font-size: 60px;              
+    color: white;                 
+    pointer-events: none;       
+}
+
+
+
+
+.audio-player {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+
+  width: 250px;
+  height: 80px;
+  background: white;
+  border-radius: 30px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+
+  z-index: 6;
+}
+
+.player-main {
+  flex: 1;
+}
+
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background: #0cc6ff;
+}
+
+.play-btn,
+.loop-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+.Proxitini_Sprite{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+
+    width: 170px;
+    height: auto;
+    aspect-ratio: auto;
+    
+    pointer-events: none;
+
+    z-index: 6;
+}
+
+.Proxitini_Sprite img{
+    width: 100%;
+    height: auto;
+
+    display: block;
+}
+
+.secret_hitbox0{
+    position: absolute;
+
+    right: 85px;
+    bottom: 65px;
+    width: 15px;
+    height: 4px;
+
+    pointer-events: auto;
+    background: rgba(255, 0, 0, 0);
+}
+
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'Ze Avriely'</title>
+    <link rel="stylesheet" href="avriely.css">
+</head>
+<body>
+
+    <!--(kid)
+   F'riend, I've neve'r s'een s'uch a menace- Ye's, they're ambitiou's, creative, s'tubbo'rn. But s'o reckles's, s'o clo'sed in'zide, they are NOTHING like you...
+    (adult)
+    Friend... They have neve'r been s'o calm. Maybe you wa's right, I mu'st wait and I WAITED fo'r them to g'row up. I r'eally wa'z af'raid, s'o many thing'z to go w'rong! But that menace, deep in'side, i's a lovely menace child...
+-->
+ 
+
+
+  <div class="moving-spotlight"><img src="../../../resources/character_minatures/characterscreen_elements/characters_light.png"></div>
+  <div class="characters-background"></div>
+
+
+    <div class="main-container">
+
+        <div class="character-photos">
+          <img src="../../../resources/character_minatures/characterscreen_elements/picturepng.png" alt="">
+          <h1 class="character-name">AVRIELY BAZELI</h1>
+          <div class="character-photo-specific"><img src="../../../resources/character_minatures/character_polarioidimages/avriely_characterimage.png" alt=""></div>
+        </div>
+      
+       
+        <div class="character-description">
+            <p> F'riend, I've neve'r s'een s'uch a menace- 
+                Ye's, they're ambitiou's, creative, s'tubbo'rn. 
+                But s'o reckles's, s'o clo'sed in'zide, 
+                they are 
+                NOTHING 
+                like you...
+    </p>
+                 <img src="../../../resources/character_minatures/characterscreen_elements/notepng.png">
+        </div>
+    </div>
+
+
+    <!--COPY PASTE AREA-->
+<div class="CyanFrame"> </div>
+
+
+  <div class="Proxitini_Sprite">
+    <img src="../../../resources/channels4_profile-removebg-preview-2.svg" alt="proxitini_sprite">
+
+    <a href="../../../secret_DIARY/diary.html" class="secret_hitbox0"></a>
+  </div>
+
+
+
+ 
+  <div class="audio-player">
+<button class="loop-btn">ᦠ</button>
+<div class="player-main">
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+</div>
+
+<button class="play-btn">▶</button>
+</div>
+
+<audio id="audio"></audio>
+
+
+  <div class="MenuOptions">
+    <a href="../../../HOME.html" class="menuoption_home"><ion-icon name="home"></ion-icon></a>
+    <a href="../../../MAP/map.html" class="menuoption">MAP</a>
+    <a href="../../../CHARACTERS/characters.html" class="menuoption">CHARACTERS</a>
+    <a href="../../../TIMELINE/timeline.html" class="menuoption">TIMELINE</a>
+    <a href="../../../ARCHIVE/archive.html" class="menuoption">ARCHIVE</a>
+  </div>
+
+
+<div class="cursor-light"></div>
+
+<script>
+const cursorLight = document.querySelector('.cursor-light');
+
+document.addEventListener('mousemove', e => {
+  cursorLight.style.left = e.clientX + 'px';
+  cursorLight.style.top = e.clientY + 'px';
+});
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <script>
+const audio = document.getElementById("audio");
+const playBtn = document.querySelector(".play-btn");
+const loopBtn = document.querySelector(".loop-btn");
+const progress = document.querySelector(".progress");
+const title = document.querySelector(".track-title");
+
+const tracks = [
+  "AVEOSCRIPT_MainTheme.wav",
+  "ElevatorMusic.wav",
+  "Get_Down_song_1wav.wav"
+];
+
+let firstPlay = true;
+let isLooping = false;
+let currentTrack = null;
+
+function selectTrack() {
+  if (firstPlay) {
+    currentTrack = tracks[0];
+    firstPlay = false;
+  } else {
+    const randomIndex = Math.floor(Math.random() * tracks.length);
+    currentTrack = tracks[randomIndex];
+  }
+
+  audio.src="../../../soundtracks/" + currentTrack;
+  audio.load();
+  title.textContent = currentTrack;
+}
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    if (!currentTrack) {
+      selectTrack();
+    }
+
+    audio.play().then(() => {
+      playBtn.textContent = "⏸";
+    }).catch(err => {
+      console.error("Audio failed:", err);
+    });
+
+  } else {
+    audio.pause();
+    playBtn.textContent = "▶";
+  }
+});
+
+loopBtn.addEventListener("click", () => {
+  isLooping = !isLooping;
+  audio.loop = isLooping;
+  loopBtn.style.opacity = isLooping ? "1" : "0.4";
+});
+
+audio.addEventListener("timeupdate", () => {
+  if (audio.duration) {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + "%";
+  }
+});
+
+audio.addEventListener("ended", () => {
+  playBtn.textContent = "▶";
+  currentTrack = null;
+});
+</script>
+
+  <!--COPY PASTE AREA-->
+
+
+  <script src="lightspot.js"></script>
+    
+</body>
+</html>
